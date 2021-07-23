@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashSet;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +35,7 @@ class PersonneRepositoryTest {
         repository.delete(actual);
         Optional<Personne> actualFind2 = repository.findById(actual.getId());
         //test
-        assertThat(personne.isNew()).isTrue();
+        assertThat(personne.isNew()).isFalse();
         assertAll("Test entity personne in DB",
                 //controle si l'id existe
                 () -> assertThat(actual.getId()).isNotNull().isNotBlank(),
@@ -92,6 +93,8 @@ class PersonneRepositoryTest {
                 .datenaiss(LocalDate.of(2012, Month.JANUARY, 8))
                 .genre(Genre.FEMININ)
                 .role(Role.ENFANT)
+                .famille(new HashSet<>())
+                .activites(new HashSet<>())
                 .build();
         return personne;
     }
@@ -103,6 +106,8 @@ class PersonneRepositoryTest {
                 .datenaiss(LocalDate.of(1980, Month.JANUARY, 8))
                 .genre(Genre.MASCULIN)
                 .role(Role.PERE)
+                .famille(new HashSet<>())
+                .activites(new HashSet<>())
                 .build();
         return personne;
     }

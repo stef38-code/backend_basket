@@ -1,7 +1,6 @@
 package com.stephane.backend.basketball.entities;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,17 +12,12 @@ import java.util.Set;
 @Setter
 @ToString
 @NoArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper=false)
 @AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "personne")
-
-public class Personne extends AbstractEntityBase{
-    /*@Id
-    @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid",strategy = "uuid")
-    private String id;*/
+public class Personne extends AbstractEntityBase<String>{
 
     @Column(name = "nom")
     private String nom;
