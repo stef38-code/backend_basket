@@ -1,8 +1,8 @@
 package com.stephane.backend.basketball.repository;
 
-import com.stephane.backend.basketball.entities.Genre;
 import com.stephane.backend.basketball.entities.Personne;
-import com.stephane.backend.basketball.entities.Role;
+import com.stephane.backend.basketball.entities.constantes.Genre;
+import com.stephane.backend.basketball.entities.constantes.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;

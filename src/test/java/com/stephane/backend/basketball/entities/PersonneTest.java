@@ -1,26 +1,27 @@
 package com.stephane.backend.basketball.entities;
 
-import java.time.Instant;
+import com.stephane.backend.basketball.entities.constantes.Genre;
+import com.stephane.backend.basketball.entities.constantes.Role;
+import org.junit.jupiter.api.Test;
+
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashSet;
 
-import org.junit.jupiter.api.Test;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PersonneTest {
+class PersonneTest {
     @Test
-    public void testCanEqual() {
+    void testCanEqual() {
         Personne personneOther = new Personne();
         personneOther.setNom("2Qxh");
         assertThat((new Personne())).isNotEqualTo(personneOther);
     }
 
     @Test
-    public void testCanEqual2() {
+    void testCanEqual2() {
         Personne personne = new Personne();
 
         Personne personne1 = new Personne();
@@ -34,7 +35,7 @@ public class PersonneTest {
     }
 
     @Test
-    public void testConstructor() {
+    void testConstructor() {
         Personne actualPersonne = new Personne();
         LocalDate ofEpochDayResult = LocalDate.of(1980, Month.JANUARY, 8);
         actualPersonne.setDatenaiss(ofEpochDayResult);
@@ -68,11 +69,11 @@ public class PersonneTest {
         assertThat(actualPersonne.getNom()).isEqualTo("Nom");
         assertThat(actualPersonne.getPrenom()).isEqualTo("Prenom");
         assertThat(actualPersonne.getRole()).isEqualTo(Role.PERE);
-        assertThat(actualPersonne.toString()).isEqualTo("Personne(nom=Nom, prenom=Prenom, datenaiss=1980-01-08, genre=MASCULIN, role=PERE, activites=[], famille=[])");
+        assertThat(actualPersonne.toString()).hasToString("Personne(nom=Nom, prenom=Prenom, datenaiss=1980-01-08, genre=MASCULIN, role=PERE, activites=[], famille=[], adresses=[])");
     }
 
     @Test
-    public void testNotEqualsWithNullPerson() {
+    void testNotEqualsWithNullPerson() {
         Personne personne = new Personne();
         personne.setPrenom("Prenom");
         personne.setFamille(new HashSet<>());
@@ -80,11 +81,11 @@ public class PersonneTest {
         personne.setRole(Role.PERE);
         personne.setGenre(Genre.MASCULIN);
         personne.setDatenaiss(LocalDate.of(1980, Month.JANUARY, 8));
-        assertThat(personne.equals(null)).isFalse();
+        assertThat(personne).isNotEqualTo(null);
     }
 
     @Test
-    public void testNotEquals() {
+    void testNotEquals() {
         Personne personne = new Personne();
         personne.setPrenom("Prenom");
         personne.setFamille(new HashSet<>());
@@ -100,11 +101,11 @@ public class PersonneTest {
         personne1.setRole(Role.PERE);
         personne1.setGenre(Genre.MASCULIN);
         personne1.setDatenaiss(LocalDate.ofEpochDay(1L));
-        assertThat(personne.equals(personne1)).isFalse();
+        assertThat(personne).isNotEqualTo(personne1);
     }
 
     @Test
-    public void testEquals() {
+    void testEquals() {
         Personne personne = new Personne();
         personne.setPrenom("Prenom");
         personne.setNom(null);
@@ -112,12 +113,13 @@ public class PersonneTest {
         personne.setGenre(Genre.MASCULIN);
         personne.setDatenaiss(LocalDate.of(1980, Month.JANUARY, 8));
 
-        assertThat(personne.equals(personne)).isTrue();
+        assertThat(personne).isEqualTo(personne);
 
 
     }
+
     @Test
-    public void testDuilderToString() {
+    void testDuilderToString() {
         String personneToString = Personne.builder()
                 .nom("Marks")
                 .prenom("Cleopatra")
@@ -127,7 +129,7 @@ public class PersonneTest {
                 .famille(new HashSet<>())
                 .activites(new HashSet<>())
                 .build().toString();
-        assertThat(personneToString).isNotBlank().isEqualTo("Personne(nom=Marks, prenom=Cleopatra, datenaiss=2012-01-08, genre=FEMININ, role=ENFANT, activites=[], famille=[])");
+        assertThat(personneToString).isNotBlank().isEqualTo("Personne(nom=Marks, prenom=Cleopatra, datenaiss=2012-01-08, genre=FEMININ, role=ENFANT, activites=[], famille=[], adresses=null)");
 
     }
 }

@@ -1,6 +1,6 @@
 package com.stephane.backend.basketball.utils;
 
-import com.stephane.backend.basketball.entities.Genre;
+import com.stephane.backend.basketball.entities.constantes.Genre;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

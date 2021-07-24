@@ -1,5 +1,7 @@
 package com.stephane.backend.basketball.entities;
 
+import com.stephane.backend.basketball.entities.constantes.Genre;
+import com.stephane.backend.basketball.entities.constantes.Role;
 import lombok.*;
 
 import javax.persistence.*;
@@ -42,14 +44,21 @@ public class Personne extends AbstractEntityBase<String>{
      *
      */
     @ManyToMany
-    @JoinTable(name="famille",
-            joinColumns=
-            @JoinColumn(name="personneID1", referencedColumnName="ID"),
-            inverseJoinColumns=
-            @JoinColumn(name="personneID2", referencedColumnName="ID")
+    @JoinTable(name = "famille",
+            joinColumns =
+            @JoinColumn(name = "personneID1", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "personneID2", referencedColumnName = "ID")
     )
     private Set<Personne> famille = new HashSet<>();
 
-
+    @ManyToMany
+    @JoinTable(name = "adresses",
+            joinColumns =
+            @JoinColumn(name = "personneID1", referencedColumnName = "ID"),
+            inverseJoinColumns =
+            @JoinColumn(name = "adresseID", referencedColumnName = "ID")
+    )
+    private Set<Adresse> adresses = new HashSet<>();
 
 }

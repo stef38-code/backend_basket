@@ -1,4 +1,4 @@
-package com.stephane.backend.basketball.entities;
+package com.stephane.backend.basketball.entities.constantes;
 
 import lombok.Getter;
 
