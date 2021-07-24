@@ -94,7 +94,6 @@ class PersonneRepositoryTest {
                 .genre(Genre.FEMININ)
                 .role(Role.ENFANT)
                 .famille(new HashSet<>())
-                .activites(new HashSet<>())
                 .build();
         return personne;
     }
@@ -107,7 +106,6 @@ class PersonneRepositoryTest {
                 .genre(Genre.MASCULIN)
                 .role(Role.PERE)
                 .famille(new HashSet<>())
-                .activites(new HashSet<>())
                 .build();
         return personne;
     }

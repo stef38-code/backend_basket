@@ -1,5 +1,6 @@
 package com.stephane.backend.basketball.utils;
 
+import com.stephane.backend.basketball.converter.GenreConverter;
 import com.stephane.backend.basketball.entities.constantes.Genre;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

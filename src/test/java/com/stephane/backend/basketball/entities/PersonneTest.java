@@ -69,7 +69,7 @@ class PersonneTest {
         assertThat(actualPersonne.getNom()).isEqualTo("Nom");
         assertThat(actualPersonne.getPrenom()).isEqualTo("Prenom");
         assertThat(actualPersonne.getRole()).isEqualTo(Role.PERE);
-        assertThat(actualPersonne.toString()).hasToString("Personne(nom=Nom, prenom=Prenom, datenaiss=1980-01-08, genre=MASCULIN, role=PERE, activites=[], famille=[], adresses=[])");
+        assertThat(actualPersonne.toString()).hasToString("Personne(nom=Nom, prenom=Prenom, datenaiss=1980-01-08, genre=MASCULIN, role=PERE, joueur=false, arbitre=false, dirigeant=false, entraineur=false, famille=[], adresses=[], contacts=[])");
     }
 
     @Test
@@ -127,9 +127,8 @@ class PersonneTest {
                 .genre(Genre.FEMININ)
                 .role(Role.ENFANT)
                 .famille(new HashSet<>())
-                .activites(new HashSet<>())
                 .build().toString();
-        assertThat(personneToString).isNotBlank().isEqualTo("Personne(nom=Marks, prenom=Cleopatra, datenaiss=2012-01-08, genre=FEMININ, role=ENFANT, activites=[], famille=[], adresses=null)");
+        assertThat(personneToString).isNotBlank().isEqualTo("Personne(nom=Marks, prenom=Cleopatra, datenaiss=2012-01-08, genre=FEMININ, role=ENFANT, joueur=false, arbitre=false, dirigeant=false, entraineur=false, famille=[], adresses=null, contacts=null)");
 
     }
 }

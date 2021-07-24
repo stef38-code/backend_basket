@@ -1,17 +1,12 @@
 package com.stephane.backend.basketball.components;
 
-import com.stephane.backend.basketball.entities.Personne;
 import com.stephane.backend.basketball.entities.constantes.Genre;
-import com.stephane.backend.basketball.entities.constantes.Role;
 import com.stephane.backend.basketball.repository.PersonneRepository;
+import com.stephane.backend.basketball.utils.data.JeuxDonnees;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.HashSet;
 
 /** add données
  * **/
@@ -20,39 +15,36 @@ import java.util.HashSet;
 @Slf4j
 class DemoCommandLineRunner implements CommandLineRunner {
     private final PersonneRepository repository;
+    private final JeuxDonnees jeuxDonnees = new JeuxDonnees();
     @Override
     public void run(String... args) throws Exception {
-        Personne enfant = getPersonneEnfant();
-        Personne pere = getPersonneParent();
-        enfant.getFamille().add(pere);
-        //Action
-        Personne actualPere = repository.save(pere);
-        log.info("Id du pere {}", actualPere.getId());
-        Personne actualEnfant = repository.save(enfant);
-        log.info("Id de l'enfant {}", actualEnfant.getId());
-    }
-    private Personne getPersonneEnfant() {
-        return Personne.builder()
-                .nom("Marks")
-                .prenom("Cleopatra")
-                .datenaiss(LocalDate.of(2012, Month.JANUARY, 8))
-                .genre(Genre.FEMININ)
-                .role(Role.ENFANT)
-                .famille(new HashSet<>())
-                .activites(new HashSet<>())
-                .build();
+        repository.saveAll(jeuxDonnees.getPersonneDirigeant(5));
+
+
+        //U7 (Baby)  6 ans et moins
+        repository.saveAll(jeuxDonnees.getU7(8, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU7(5, Genre.MASCULIN));
+        //U8-U9 (Mini-Poussins) 7 et 8 ans
+        repository.saveAll(jeuxDonnees.getU9(5, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU9(5, Genre.MASCULIN));
+        //U10-U11 (Poussins)	9 et 10 ans
+        repository.saveAll(jeuxDonnees.getU11(9, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU11(5, Genre.MASCULIN));
+        //U12-U13 (Benjamins)	11 et 12 ans
+        repository.saveAll(jeuxDonnees.getU13(6, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU13(9, Genre.MASCULIN));
+        //U14-U15 (Minimes)	13 et 14 ans
+        repository.saveAll(jeuxDonnees.getU15(6, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU15(8, Genre.MASCULIN));
+        //U16-U17 (Cadets)	15 et 16 ans
+        repository.saveAll(jeuxDonnees.getU17(11, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU17(7, Genre.MASCULIN));
+        //U18-U19-U20 (Juniors) 	17,18,et 19 ans
+        repository.saveAll(jeuxDonnees.getU18(9, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getU18(15, Genre.MASCULIN));
+
+        repository.saveAll(jeuxDonnees.getPersonneJoueursMajeurSansFamille(8, Genre.FEMININ));
+        repository.saveAll(jeuxDonnees.getPersonneJoueursMajeurSansFamille(14, Genre.MASCULIN));
     }
 
-    private Personne getPersonneParent() {
-        return Personne.builder()
-                .nom("Marks")
-                .prenom("Robert")
-                .datenaiss(LocalDate.of(1980, Month.JANUARY, 8))
-                .genre(Genre.MASCULIN)
-                .role(Role.PERE)
-                .famille(new HashSet<>())
-                .activites(new HashSet<>())
-                .build();
-
-    }
 }

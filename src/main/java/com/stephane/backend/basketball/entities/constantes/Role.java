@@ -3,7 +3,7 @@ package com.stephane.backend.basketball.entities.constantes;
 import lombok.Getter;
 
 public enum Role {
-    PERE("P"), MERE("M"), ENFANT("E");
+    PERE("P"), MERE("M"), ENFANT("E"), ADULTE("A");
     @Getter
     private String code;
 

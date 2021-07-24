@@ -1,4 +1,4 @@
-package com.stephane.backend.basketball.utils;
+package com.stephane.backend.basketball.converter;
 
 import com.stephane.backend.basketball.entities.constantes.Genre;
 
@@ -10,11 +10,11 @@ import java.util.stream.Stream;
 public class GenreConverter implements AttributeConverter<Genre, String> {
 
     @Override
-    public String convertToDatabaseColumn(Genre category) {
-        if (category == null) {
+    public String convertToDatabaseColumn(Genre genre) {
+        if (genre == null) {
             return null;
         }
-        return category.getCode();
+        return genre.getCode();
     }
 
     @Override
