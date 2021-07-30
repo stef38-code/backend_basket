@@ -1,7 +1,7 @@
 package com.stephane.backend.basketball.controller;
 
-import com.stephane.backend.basketball.dto.PersonneDto;
-import com.stephane.backend.basketball.services.PersonneServiceImpl;
+import com.stephane.backend.basketball.dto.AdresseDto;
+import com.stephane.backend.basketball.services.AdresseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
@@ -16,19 +16,19 @@ import java.util.Collection;
 
 @RestController
 @RequestMapping(
-    value = "/personnes",
+    value = "/adresses",
     produces = {MediaType.APPLICATION_JSON_VALUE, MediaTypes.HAL_JSON_VALUE})
 @RequiredArgsConstructor
-public class PersonneController {
-  private final PersonneServiceImpl personneService;
+public class AdresseController {
+  private final AdresseService adresseService;
 
   @GetMapping
-  public ResponseEntity<Collection<PersonneDto>> getAllRegions() {
-    return new ResponseEntity<>(personneService.getToutesPersonnes(), HttpStatus.OK);
+  public ResponseEntity<Collection<AdresseDto>> getToutesLesAdresses() {
+    return new ResponseEntity<>(adresseService.getToutesAdresses(), HttpStatus.OK);
   }
 
-  @GetMapping("/{personneId}")
-  public ResponseEntity<PersonneDto> getCustomerById(@PathVariable String personneId) {
-    return new ResponseEntity<>(personneService.getPersonneById(personneId), HttpStatus.OK);
+  @GetMapping("/{adresseId}")
+  public ResponseEntity<AdresseDto> getAdresseById(@PathVariable String adresseId) {
+    return new ResponseEntity<>(adresseService.getAdresseById(adresseId), HttpStatus.OK);
   }
 }

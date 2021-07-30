@@ -1,5 +1,6 @@
 package com.stephane.backend.basketball.config;
 
+import com.stephane.backend.basketball.exception.AdresseNotFoundException;
 import com.stephane.backend.basketball.exception.IPersonnalNotFoundException;
 import com.stephane.backend.basketball.exception.PersonneNotFoundException;
 import lombok.extern.slf4j.Slf4j;
@@ -17,28 +18,35 @@ import java.util.Map;
 @Slf4j
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
-    @ExceptionHandler(PersonneNotFoundException.class)
-    public ResponseEntity<Object> handleRegionsNotFoundException(
-            PersonneNotFoundException ex, WebRequest request) {
-        Map<String, Object> body = getBody("La personne spécifiée est introuvable", ex, request);
-        return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
-    }
+  @ExceptionHandler(PersonneNotFoundException.class)
+  public ResponseEntity<Object> handlePersonneNotFoundException(
+      PersonneNotFoundException ex, WebRequest request) {
+    Map<String, Object> body = getBody("La personne spécifiée est introuvable", ex, request);
+    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+  }
 
-    /**
-     * Getter du body de la reponse
-     *
-     * @param message le message
-     * @param ex      l'erreur
-     * @param request WebRequest
-     * @return Map<String, Object>
-     */
-    private Map<String, Object> getBody(String message, IPersonnalNotFoundException ex, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", message);
-        log.error("message erreur:{}", ex.getMessage());
-        log.error("Type:{}", ex.getCode().toString());
-        log.error("url:{}", request.getContextPath());
-        return body;
-    }
+  @ExceptionHandler(AdresseNotFoundException.class)
+  public ResponseEntity<Object> handleAdresseNotFoundException(
+      PersonneNotFoundException ex, WebRequest request) {
+    Map<String, Object> body = getBody("L'adresse spécifiée est introuvable", ex, request);
+    return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
+  }
+  /**
+   * Getter du body de la reponse
+   *
+   * @param message le message
+   * @param ex l'erreur
+   * @param request WebRequest
+   * @return Map<String, Object>
+   */
+  private Map<String, Object> getBody(
+      String message, IPersonnalNotFoundException ex, WebRequest request) {
+    Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("message", message);
+    log.error("message erreur:{}", ex.getMessage());
+    log.error("Type:{}", ex.getCode().toString());
+    log.error("url:{}", request.getContextPath());
+    return body;
+  }
 }

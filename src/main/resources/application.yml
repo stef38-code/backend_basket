@@ -1,11 +1,15 @@
 #security:
- # enabled: false
+# enabled: false
 #----------------------------
 # Spring Boot configuration
 #----------------------------
 spring:
-  #security:
-   # ignored: /**
+  hateoas:
+    use-hal-as-default-json-media-type: false
+    jackson:
+      default-property-inclusion: NON_ABSENT
+    #security:
+    # ignored: /**
   main:
     banner-mode: "off"
   # Database
