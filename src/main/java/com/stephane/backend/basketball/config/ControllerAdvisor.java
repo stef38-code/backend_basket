@@ -8,9 +8,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.util.UrlPathHelper;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,7 +30,7 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(AdresseNotFoundException.class)
   public ResponseEntity<Object> handleAdresseNotFoundException(
-      PersonneNotFoundException ex, WebRequest request) {
+      AdresseNotFoundException ex, WebRequest request) {
     Map<String, Object> body = getBody("L'adresse spécifiée est introuvable", ex, request);
     return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
   }
@@ -46,7 +49,12 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     body.put("message", message);
     log.error("message erreur:{}", ex.getMessage());
     log.error("Type:{}", ex.getCode().toString());
-    log.error("url:{}", request.getContextPath());
+    log.error("url:{}", getPath((ServletWebRequest) request));
     return body;
+  }
+
+  private String getPath(ServletWebRequest request) {
+    HttpServletRequest httpServletRequest = request.getRequest();
+    return new UrlPathHelper().getPathWithinApplication(httpServletRequest);
   }
 }
