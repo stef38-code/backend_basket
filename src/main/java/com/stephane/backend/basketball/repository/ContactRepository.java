@@ -8,5 +8,5 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface ContactRepository extends JpaRepository<Contact, String> {
-  Optional<Collection<Contact>> findAllByTypecontact(TypeContact typecontact);
+  Optional<Collection<Contact>> findAllByTypecontactEquals(TypeContact typecontact);
 }
