@@ -27,6 +27,11 @@ public class ContactController {
     return new ResponseEntity<>(contactService.getToutesLesContacts(), HttpStatus.OK);
   }
 
+  @GetMapping("/emails")
+  public ResponseEntity<Collection<ContactDto>> getToutesLesContactsEmails() {
+    return new ResponseEntity<>(contactService.getToutesLesContactsEmails(), HttpStatus.OK);
+  }
+
   @GetMapping("/{contactId}")
   public ResponseEntity<ContactDto> getContactById(@PathVariable String contactId) {
     return new ResponseEntity<>(contactService.getContactById(contactId), HttpStatus.OK);

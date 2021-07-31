@@ -36,4 +36,13 @@ public class ContactServiceImpl implements ContactService {
     }
     throw new ContactNotFoundException(ErrorCode.APPLICATIF, contactId);
   }
+
+  @Override
+  public Collection<ContactDto> getToutesLesContactsEmails() {
+    List<Contact> all = repository.findAll();
+    if (!all.isEmpty()) {
+      return mapper.map(all);
+    }
+    throw new ContactNotFoundException(ErrorCode.APPLICATIF, "contactId");
+  }
 }

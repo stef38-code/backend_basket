@@ -8,4 +8,6 @@ public interface ContactService {
   Collection<ContactDto> getToutesLesContacts();
 
   ContactDto getContactById(String contactId);
+
+  Collection<ContactDto> getToutesLesContactsEmails();
 }
