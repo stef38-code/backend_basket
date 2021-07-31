@@ -8,7 +8,7 @@ import org.springframework.hateoas.RepresentationModel;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-// @Relation(value = "personne", collectionRelation = "personnes")
+@EqualsAndHashCode(callSuper = false)
 public class AdresseDto extends RepresentationModel<AdresseDto> {
   private String ligne1;
   private String ligne2;

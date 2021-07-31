@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-// @Relation(value = "personne", collectionRelation = "personnes")
+@EqualsAndHashCode(callSuper = false)
 public class PersonneDto extends RepresentationModel<PersonneDto> {
   private String nom;
   private String prenom;

@@ -4,9 +4,9 @@ import com.stephane.backend.basketball.entities.constantes.NatureContact;
 import com.stephane.backend.basketball.entities.constantes.TypeContact;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,13 +19,17 @@ import javax.persistence.Table;
 @Table(name = "contact")
 public class Contact extends AbstractEntityBase<String> {
 
-    @Column(name = "typecontact")
-    private TypeContact typecontact;
+  @Column(name = "typecontact")
+  private TypeContact typecontact;
 
-    @Column(name = "naturecontact")
-    private NatureContact naturecontact;
+  @Column(name = "naturecontact")
+  private NatureContact naturecontact;
 
-    @Column(name = "value")
-    private String valeur;
+  @Column(name = "value")
+  private String valeur;
 
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
+  @ManyToMany(mappedBy = "contacts", fetch = FetchType.EAGER)
+  private Set<Personne> famille = new HashSet<>();
 }
