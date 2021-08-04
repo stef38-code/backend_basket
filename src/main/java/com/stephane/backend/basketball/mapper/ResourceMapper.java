@@ -10,6 +10,6 @@ public interface ResourceMapper<E, R> {
   R map(E entity);
 
   default List<R> map(Collection<E> entities) {
-    return entities.stream().map(entity -> map(entity)).collect(Collectors.toList());
+    return entities.stream().map(this::map).collect(Collectors.toList());
   }
 }

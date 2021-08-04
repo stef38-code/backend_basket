@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class JeuxDonneesContacts extends JeuxDonneesAdresse {
     protected HashSet<Contact> getContacts() {
-        HashSet<Contact> contacts = new HashSet<Contact>();
+        HashSet<Contact> contacts = new HashSet<>();
         contacts.add(getContactEmail());
         contacts.add(getContactTel());
         return contacts;

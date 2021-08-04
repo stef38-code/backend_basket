@@ -47,25 +47,24 @@ public class Personne extends AbstractEntityBase<String> {
   private Categorie categorie;
   /** */
   @Embedded
-  @AttributeOverrides({
     @AttributeOverride(
         name = "joueur",
         column =
-            @Column(name = "joueur", columnDefinition = "boolean default  true", nullable = false)),
+            @Column(name = "joueur", columnDefinition = "boolean default  true", nullable = false))
     @AttributeOverride(
         name = "arbitre",
         column =
             @Column(
                 name = "arbitre",
                 columnDefinition = "boolean default  false",
-                nullable = false)),
+                nullable = false))
     @AttributeOverride(
         name = "dirigeant",
         column =
             @Column(
                 name = "dirigeant",
                 columnDefinition = "boolean default  false",
-                nullable = false)),
+                nullable = false))
     @AttributeOverride(
         name = "entraineur",
         column =
@@ -73,8 +72,7 @@ public class Personne extends AbstractEntityBase<String> {
                 name = "entraineur",
                 columnDefinition = "boolean default  false",
                 nullable = false))
-  })
-  private ActiviteDansLeClub activiteDansLeClub;
+   private ActiviteDansLeClub activiteDansLeClub;
 
   /** */
   @EqualsAndHashCode.Exclude

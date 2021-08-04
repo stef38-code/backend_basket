@@ -9,5 +9,5 @@ public interface PersonneService {
     PersonneDto getPersonneById(String personneId);
     Collection<PersonneDto> getToutesPersonnes();
     PersonneDetailsDto getPersonneDetailsById(String personneId);
-    void SupprimerPersonneById(String personneId);
+    void supprimerPersonneById(String personneId);
 }

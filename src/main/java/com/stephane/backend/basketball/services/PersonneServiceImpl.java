@@ -49,7 +49,7 @@ public class PersonneServiceImpl implements PersonneService {
   }
 
   @Override
-  public void SupprimerPersonneById(String personneId) {
+  public void supprimerPersonneById(String personneId) {
     if (StringUtils.isBlank(personneId)) {
       throw new PersonneNotFoundException(ErrorCode.APPLICATIF, personneId);
     }

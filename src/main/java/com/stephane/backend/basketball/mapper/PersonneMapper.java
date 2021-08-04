@@ -32,9 +32,6 @@ public interface PersonneMapper extends ResourceMapper<Personne, PersonneDto> {
                 methodOn(PersonneController.class).getToutesPersonnes())
             .withRel("Personnes"));
 
-/*      resource.add(linkTo(methodOn(PersonneController.class)
-              .miseAJourPersonne(PersonneDetailsDto, entity.getId()))
-              .withRel("miseAJours"));*/
       resource.add(linkTo(methodOn(PersonneController.class)
               .supprimerPersonneById(entity.getId()))
               .withRel("Supprimer"));

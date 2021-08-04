@@ -17,6 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @Service
 public class ContactServiceImpl implements ContactService {
+  public static final String CONTACT_ID = "contactId";
   private final ContactRepository repository;
   private final ContactMapper mapper;
 
@@ -26,7 +27,7 @@ public class ContactServiceImpl implements ContactService {
     if (!all.isEmpty()) {
       return mapper.map(all);
     }
-    throw new ContactNotFoundException(ErrorCode.APPLICATIF, "contactId");
+    throw new ContactNotFoundException(ErrorCode.APPLICATIF, CONTACT_ID);
   }
 
   @Override
@@ -44,7 +45,7 @@ public class ContactServiceImpl implements ContactService {
     if (!all.isEmpty()) {
       return mapper.map(all);
     }
-    throw new ContactNotFoundException(ErrorCode.APPLICATIF, "contactId");
+    throw new ContactNotFoundException(ErrorCode.APPLICATIF, CONTACT_ID);
   }
 
   @Override
@@ -53,7 +54,7 @@ public class ContactServiceImpl implements ContactService {
     if (!all.isEmpty()) {
       return mapper.map(all);
     }
-    throw new ContactNotFoundException(ErrorCode.APPLICATIF, "contactId");
+    throw new ContactNotFoundException(ErrorCode.APPLICATIF, CONTACT_ID);
   }
   @Override
   public Collection<ContactDto> getToutesLesContactsTelephonesFixe() {
@@ -61,7 +62,7 @@ public class ContactServiceImpl implements ContactService {
     if (!all.isEmpty()) {
       return mapper.map(all);
     }
-    throw new ContactNotFoundException(ErrorCode.APPLICATIF, "contactId");
+    throw new ContactNotFoundException(ErrorCode.APPLICATIF, CONTACT_ID);
   }
 
 }

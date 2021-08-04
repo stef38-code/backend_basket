@@ -32,7 +32,7 @@ public class PersonneController {
   }
   @DeleteMapping("/{personneId}")
   public ResponseEntity<Void> supprimerPersonneById(@PathVariable String personneId) {
-    personneService.SupprimerPersonneById(personneId);
+    personneService.supprimerPersonneById(personneId);
     return new ResponseEntity<>( HttpStatus.OK);
   }
   @GetMapping("/{personneId}/details")
