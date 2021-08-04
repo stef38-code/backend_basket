@@ -10,4 +10,7 @@ public interface ContactService {
   ContactDto getContactById(String contactId);
 
   Collection<ContactDto> getToutesLesContactsEmails();
+
+  Collection<ContactDto> getToutesLesContactsTelephonesPortable();
+  Collection<ContactDto> getToutesLesContactsTelephonesFixe();
 }

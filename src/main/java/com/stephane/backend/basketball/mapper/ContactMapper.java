@@ -31,7 +31,7 @@ public interface ContactMapper extends ResourceMapper<Contact, ContactDto> {
         .forEach(
             personne ->
                 resource.add(
-                    linkTo(methodOn(PersonneController.class).getCustomerById(personne.getId()))
+                    linkTo(methodOn(PersonneController.class).getPersonneById(personne.getId()))
                         .withRel(personne.getRole().toString().toLowerCase(Locale.ROOT))));
   }
 }

@@ -2,6 +2,7 @@ package com.stephane.backend.basketball.dto;
 
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 @Getter
 @Setter
@@ -9,6 +10,7 @@ import org.springframework.hateoas.RepresentationModel;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
+@Relation(collectionRelation = "adresses")
 public class AdresseDto extends RepresentationModel<AdresseDto> {
   private String ligne1;
   private String ligne2;

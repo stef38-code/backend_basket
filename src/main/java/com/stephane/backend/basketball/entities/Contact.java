@@ -1,5 +1,6 @@
 package com.stephane.backend.basketball.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.stephane.backend.basketball.entities.constantes.NatureContact;
 import com.stephane.backend.basketball.entities.constantes.TypeContact;
 import lombok.*;
@@ -30,6 +31,8 @@ public class Contact extends AbstractEntityBase<String> {
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
+  @Builder.Default
   @ManyToMany(mappedBy = "contacts", fetch = FetchType.EAGER)
+  @JsonBackReference
   private Set<Personne> famille = new HashSet<>();
 }

@@ -1,5 +1,6 @@
 package com.stephane.backend.basketball.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.stephane.backend.basketball.entities.constantes.Categorie;
 import com.stephane.backend.basketball.entities.constantes.Genre;
 import com.stephane.backend.basketball.entities.constantes.Role;
@@ -25,6 +26,7 @@ import java.util.Set;
  * https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
  */
 public class Personne extends AbstractEntityBase<String> {
+
 
   @Column(name = "nom")
   private String nom;
@@ -77,28 +79,34 @@ public class Personne extends AbstractEntityBase<String> {
   /** */
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
+  @Builder.Default
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(
       name = "famille",
-      joinColumns = @JoinColumn(name = "personneID1", referencedColumnName = "ID"),
-      inverseJoinColumns = @JoinColumn(name = "personneID2", referencedColumnName = "ID"))
+      joinColumns = @JoinColumn(name = "personneID1", referencedColumnName = "ID", nullable = false),
+      inverseJoinColumns = @JoinColumn(name = "personneID2", referencedColumnName = "ID", nullable = false))
+  @JsonManagedReference
   private Set<Personne> famille = new HashSet<>();
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
+  @Builder.Default
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(
       name = "adresses",
       joinColumns = @JoinColumn(name = "personneID1", referencedColumnName = "ID"),
       inverseJoinColumns = @JoinColumn(name = "adresseID", referencedColumnName = "ID"))
+
   private Set<Adresse> adresses = new HashSet<>();
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
+  @Builder.Default
   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JoinTable(
       name = "contacts",
       joinColumns = @JoinColumn(name = "personneID1", referencedColumnName = "ID"),
       inverseJoinColumns = @JoinColumn(name = "contactID", referencedColumnName = "ID"))
+  @JsonManagedReference
   private Set<Contact> contacts = new HashSet<>();
 }

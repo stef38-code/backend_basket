@@ -31,7 +31,14 @@ public class ContactController {
   public ResponseEntity<Collection<ContactDto>> getToutesLesContactsEmails() {
     return new ResponseEntity<>(contactService.getToutesLesContactsEmails(), HttpStatus.OK);
   }
-
+  @GetMapping("/telephones/portable")
+  public ResponseEntity<Collection<ContactDto>> getToutesLesContactsTelephonesPortable() {
+    return new ResponseEntity<>(contactService.getToutesLesContactsTelephonesPortable(), HttpStatus.OK);
+  }
+  @GetMapping("/telephones/fixe")
+  public ResponseEntity<Collection<ContactDto>> getToutesLesContactsTelephonesFixe() {
+    return new ResponseEntity<>(contactService.getToutesLesContactsTelephonesFixe(), HttpStatus.OK);
+  }
   @GetMapping("/{contactId}")
   public ResponseEntity<ContactDto> getContactById(@PathVariable String contactId) {
     return new ResponseEntity<>(contactService.getContactById(contactId), HttpStatus.OK);

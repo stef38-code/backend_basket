@@ -31,7 +31,7 @@ public interface AdresseMapper extends ResourceMapper<Adresse, AdresseDto> {
         .forEach(
             personne ->
                 resource.add(
-                    linkTo(methodOn(PersonneController.class).getCustomerById(personne.getId()))
+                    linkTo(methodOn(PersonneController.class).getPersonneById(personne.getId()))
                         .withRel(personne.getRole().toString().toLowerCase(Locale.ROOT))));
   }
 }

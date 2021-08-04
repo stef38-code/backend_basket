@@ -118,7 +118,6 @@ public class JeuxDonnees extends JeuxDonneesPersonnes {
 
       joueur.getFamille().add(mere);
       joueur.getFamille().add(pere);
-
       list.add(joueur);
     }
     return list;

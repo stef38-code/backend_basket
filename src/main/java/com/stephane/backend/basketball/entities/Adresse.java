@@ -1,5 +1,6 @@
 package com.stephane.backend.basketball.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,6 +41,8 @@ public class Adresse extends AbstractEntityBase<String> {
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
+  @Builder.Default
   @ManyToMany(mappedBy = "adresses", fetch = FetchType.EAGER)
+  @JsonBackReference
   private Set<Personne> famille = new HashSet<>();
 }
